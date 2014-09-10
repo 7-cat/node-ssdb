@@ -150,6 +150,20 @@ SSDB API Documentation
 
 Detail docs for ssdb interfaces can be found at: https://github.com/hit9/ssdb.api.docs
 
+
+FAQ
+---
+
+1. Pipeline?
+
+   Node-ssdb pipelines automatically because node.js has async IO, this is different with other
+   clients in sync IO languages (i.e. Python), node-ssdb always pipelines.
+
+2. Commands & Callbacks ordering ?
+
+   On a single client, the callbacks are run the same order as the commands are sent, TCP guarantees
+   this: the stream will arrive in the same order as it was sent.
+
 License
 -------
 
