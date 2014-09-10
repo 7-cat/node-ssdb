@@ -10,6 +10,8 @@ Latest version: v0.1.1
 
 Please dont send me emails for any questions about node-ssdb, open an issue on GitHub instead, thanks!
 
+Python port: https://github.com/hit9/ssdb.py
+
 Requirements
 -------------
 
@@ -147,7 +149,6 @@ SSDB API Documentation
 ----------------------
 
 Detail docs for ssdb interfaces can be found at: https://github.com/hit9/ssdb.api.docs
-
 
 License
 -------
