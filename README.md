@@ -8,7 +8,7 @@ Latest version: v0.1.1
 
 ![](https://api.travis-ci.org/eleme/node-ssdb.svg)
 
-Feel free to open an issue! =_-
+Please dont send me emails for any questions about node-ssdb, open an issue on GitHub instead, thanks!
 
 Requirements
 -------------
@@ -76,7 +76,7 @@ Callback functions have two parameters: `error, data`;
 
 - on `status_ok`:  only `error` is `undefined`;
 - on `status_not_found`: `error` and `data` are both `undefined`
-- on `status_client_error` and other `not_ok` status: only `data` is `undefined`.
+- on `status_error`, `status_fail`, `status_client_error`: only `data` is `undefined`.
 
 API References
 --------------
@@ -116,30 +116,15 @@ ssdb.commands   // js object keys
 
 ### Client events
 
-#### 'status_ok'
+All client events: **"status_ok"**, **"status_not_found"**, **"status_fail"**, **"status_client_error"**, **"status_error"**
 
-- parameters: `cmd`, `data`
+Parameters: `command, error, data`.
 
-Listener example:
 ```js
-var util = require('util');
-
-client.on('status_ok', function(cmd, data){
-  console.log(util.format('%s replies ok, data: %s', cmd, data));
+client.on('status_client_error', function(command, error, data) {
+  log.error('Error %s on command: %s', error, command);
 });
 ```
-
-#### 'status_not_found'
-
-- parameters: `cmd`
-
-#### 'status_client_error'
-
-- parameters: `cmd`
-
-#### 'status_not_ok'
-
-- parameters: `status`, `cmd`
 
 ### Connection Events Handling
 
@@ -163,10 +148,6 @@ SSDB API Documentation
 
 Detail docs for ssdb interfaces can be found at: https://github.com/hit9/ssdb.api.docs
 
-Questions
----------
-
-1. Where is the pipline? Nodejs has async IO, it pipelines by defaul.  [issue#13](https://github.com/eleme/node-ssdb/issues/13)
 
 License
 -------
