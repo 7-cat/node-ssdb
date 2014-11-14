@@ -4,7 +4,7 @@ var should = require('should');
 var co = require('co');
 var sleep = require('co-sleep');
 
-var client = ssdb.createClient();
+var client = ssdb.createClient({auth: '123456789012345678901234567890123'});
 client.thunkify();
 
 // helpers
@@ -519,5 +519,5 @@ describe('ssdb', function(){
       size.should.be.a.Number;
       done();
     })()
-  })
+  });
 });
