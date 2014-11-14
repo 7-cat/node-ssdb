@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get install -qq libsnappy-dev
   - git clone git://github.com/ideawu/ssdb.git
   - cd ssdb
-  - git checkout 0f613f5927bb8af401a19a8dfae483c1a61d83da
+  - git checkout b62f018872352df9b8fdd69cd3b3a9a9cc8d3e2a
   - make
   - cd ..
 
