@@ -177,7 +177,7 @@ describe('ssdb', function(){
       var key = uk();
       var a = yield client.set(key, 'val');
       var b = yield client.countbit(key);
-      should([a, b]).eql([1, 8]);
+      should([a, b]).eql([1, 12]);
       done();
     })();
   });
