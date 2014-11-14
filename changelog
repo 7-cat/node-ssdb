@@ -1,0 +1,7 @@
+0.1.3
+-----
+
+  * Add command `dbsize`
+  * Fix `countbit` testcase for ssdb v1.8.0
+  * Fix lazy connect callback
+  * Add auth option to `createClient`

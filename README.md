@@ -4,7 +4,7 @@ node-ssdb
 [ssdb](https://github.com/ideawu/ssdb) nodejs client library,
 ssdb is a fast nosql database, an alternative to redis.
 
-Latest version: v0.1.2
+Latest version: v0.1.3
 
 ![](https://api.travis-ci.org/eleme/node-ssdb.svg)
 
@@ -98,9 +98,12 @@ options (with default values):
 {
   host: '0.0.0.0',
   port: 8888,
+  auth: undefined
   timeout: 0
 }
 ```
+
+*Note: `auth` requires ssdb v1.7.0.0+*
 
 ### client.quit()
 

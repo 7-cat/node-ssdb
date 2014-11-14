@@ -4,7 +4,7 @@ var should = require('should');
 var co = require('co');
 var sleep = require('co-sleep');
 
-var client = ssdb.createClient();
+var client = ssdb.createClient({auth: '123456789012345678901234567890123'});
 client.thunkify();
 
 // helpers
@@ -177,7 +177,7 @@ describe('ssdb', function(){
       var key = uk();
       var a = yield client.set(key, 'val');
       var b = yield client.countbit(key);
-      should([a, b]).eql([1, 8]);
+      should([a, b]).eql([1, 12]);
       done();
     })();
   });
@@ -502,13 +502,22 @@ describe('ssdb', function(){
       done();
     })();
   });
-    it('get a chinese value', function(done){
-      co(function* (){
-        var key = uk();
-        var a = yield client.set(key, '中文测试');
-        var b = yield client.get(key);
-        should(b).eql('中文测试');
-        done();
-      })();
-    });
+
+  it('get a chinese value', function(done){
+    co(function* (){
+      var key = uk();
+      var a = yield client.set(key, '中文测试');
+      var b = yield client.get(key);
+      should(b).eql('中文测试');
+      done();
+    })();
+  });
+
+  it('dbsize', function(done){
+    co(function* (){
+      var size = yield client.dbsize();
+      size.should.be.a.Number;
+      done();
+    })()
+  });
 });
