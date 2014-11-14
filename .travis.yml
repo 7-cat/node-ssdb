@@ -13,11 +13,12 @@ before_install:
   - cd ..
 
 before_script:
+  - mkdir -p res/var
   - ./ssdb/ssdb-server ./res/ssdb.conf -d
 
 after_script:
   - killall -w ssdb-server
-  - rm -rf ssdb/var/*
+  - rm -rf ./res/var/*
 
 script:
   - npm test
