@@ -71,6 +71,8 @@ client.set('key', 'val')
 });
 ```
 
+*node-ssdb uses v8 native Promise to implement `promisify`, which requires nodejs v0.11.13+*
+
 Callback Parameters
 -------------------
 
