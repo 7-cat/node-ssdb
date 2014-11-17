@@ -1,3 +1,9 @@
+0.1.4
+-----
+
+  * Upgrade test dependency tj/co to v4.0.0
+  * Use v8 native Promise to implement promisify. (requires v0.11.13+)
+
 0.1.3
 -----
 
