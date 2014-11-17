@@ -4,7 +4,7 @@ node-ssdb
 [ssdb](https://github.com/ideawu/ssdb) nodejs client library,
 ssdb is a fast nosql database, an alternative to redis.
 
-Latest version: v0.1.3
+Latest version: v0.1.4
 
 ![](https://api.travis-ci.org/eleme/node-ssdb.svg)
 
@@ -40,22 +40,21 @@ client.set('key', 'val', function(err, data){
 });
 ```
 
-Work with TJ's [co](https://github.com/visionmedia/co):
+Work with [tj/co](https://github.com/tj/co):
 
 ```js
 var co = require('co');
 client.thunkify();
+// or client.promisify();
 
 co(function *(){
-  try{
-    var key = 'key';
-    var a = yield client.set(key, 'val');
-    var b = yield client.get(key);
-    console.log(a, b);  // 1 'val'
-  } catch(e){
-    throw e;
-  }
-})();
+  var key = 'key';
+  var a = yield client.set(key, 'val');
+  var b = yield client.get(key);
+  console.log(a, b);  // 1 'val'
+}).catch(function(err) {
+  console.error(err)
+});
 ```
 
 Work with promises:
@@ -70,6 +69,8 @@ client.set('key', 'val')
   console.log(d);  // 'val'
 });
 ```
+
+*node-ssdb uses v8 native Promise to implement `promisify`, which requires nodejs v0.11.13+*
 
 Callback Parameters
 -------------------
