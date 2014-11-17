@@ -6,7 +6,7 @@ var coMocha = require('co-mocha');
 var sleep = require('co-sleep');
 
 var client = ssdb.createClient({auth: '123456789012345678901234567890123'});
-client.thunkify();
+client.promisify();
 
 // helpers
 var uk = (function(base){
