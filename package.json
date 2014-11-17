@@ -15,7 +15,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "should": "^4.0.4",
+    "should": "4.0.4",
     "co-mocha": ">=1.0.4",
     "mocha": "~1.21.4",
     "co": "^4.0.0",
