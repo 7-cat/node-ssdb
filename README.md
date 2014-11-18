@@ -40,7 +40,7 @@ client.set('key', 'val', function(err, data){
 });
 ```
 
-Work with [tj/co](https://github.com/tj/co):
+Work with [tj/co](https://github.com/tj/co), make it thunkify or promisify:
 
 ```js
 var co = require('co');
@@ -57,20 +57,20 @@ co(function *(){
 });
 ```
 
-Work with promises:
+*node-ssdb uses v8 native Promise to implement `promisify`, which requires nodejs v0.11.13+*
+
+To use [bluebird](https://github.com/petkaantonov/bluebird) as promise implementation (which
+is much faster than v8 native promise):
 
 ```js
-client.promisify()
+var ssdb = require('ssdb');
+var client = ssdb.createClient();
+var Promise = require('bluebird');
 
-client.set('key', 'val')
-.then(function(){
-  return client.get('key')
-}).then(function(d){
-  console.log(d);  // 'val'
-});
+for (var cmd in ssdb.commands) {
+  client[cmd] = Promise.promisify(client[cmd]);
+}
 ```
-
-*node-ssdb uses v8 native Promise to implement `promisify`, which requires nodejs v0.11.13+*
 
 Callback Parameters
 -------------------
