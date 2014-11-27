@@ -416,4 +416,27 @@ describe('ssdb', function(){
     var size = yield client.dbsize();
     size.should.be.a.Number;
   });
+
+  it('pool paral', function *(){
+    var size = 10;
+
+    var keys = [];
+    for (var i = 0; i < size; i++) keys.push(uk());
+
+    var reqs = [];
+    for (var i = 0; i < size; i++) reqs.push(client.set(keys[i], i));
+
+    var resps = [];
+    for (var i = 0; i < size; i++) resps.push(1);
+
+    should(yield reqs).eql(resps);
+
+    var reqs_ = [];
+    for (var i = 0; i < size; i++) reqs_.push(client.get(keys[i]));
+
+    var resps_ = [];
+    for (var i = 0; i < size; i++) resps_.push(i);
+
+    should(yield reqs_).eql(resps_);
+  });
 });
