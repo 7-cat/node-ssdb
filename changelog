@@ -1,3 +1,10 @@
+0.1.5
+-----
+
+  * Remove `client.unref`
+  * Add connect pool size option (pool supports)
+  * Deprecated all events
+
 0.1.4
 -----
 
