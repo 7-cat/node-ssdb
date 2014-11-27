@@ -63,13 +63,8 @@ To use [bluebird](https://github.com/petkaantonov/bluebird) as promise implement
 is much faster than v8 native promise):
 
 ```js
-var ssdb = require('ssdb');
-var client = ssdb.createClient();
-var Promise = require('bluebird');
-
-for (var cmd in ssdb.commands) {
-  client[cmd] = Promise.promisify(client[cmd]);
-}
+// use bluebird promise
+global.Promise = require('bluebird').Promise;
 ```
 
 Callback Parameters
