@@ -5,7 +5,7 @@ var co = require('co');
 var coMocha = require('co-mocha');
 var sleep = require('co-sleep');
 
-var client = ssdb.createClient({auth: '123456789012345678901234567890123'});
+var client = ssdb.createClient({auth: '123456789012345678901234567890123', size: 30});
 client.promisify();
 
 // helpers
@@ -278,7 +278,11 @@ describe('ssdb', function(){
     var d = client.zexists(z, k);
     var e = client.zdel(z, k);
     var f = client.zexists(z, k);
-    should(yield [a, b, c, d, e, f]).eql([1, 13, 16, true, 1, false]);
+    should(yield a).eql(1);
+    should(yield b).eql(13);
+    should(yield [c, d]).eql([16, true]);
+    should(yield e).eql(1);
+    should(yield f).eql(false);
   });
 
   it('zsize', function *(){
