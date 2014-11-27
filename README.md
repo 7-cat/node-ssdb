@@ -4,7 +4,7 @@ node-ssdb
 [ssdb](https://github.com/ideawu/ssdb) nodejs client library,
 ssdb is a fast nosql database, an alternative to redis.
 
-Latest version: v0.1.4
+Latest version: v0.1.5
 
 ![](https://api.travis-ci.org/eleme/node-ssdb.svg)
 
@@ -99,7 +99,8 @@ options (with default values):
 {
   host: '0.0.0.0',
   port: 8888,
-  auth: undefined
+  auth: undefined,  // ssdb server auth password
+  size: 1,  // connection pool size
   timeout: 0
 }
 ```
@@ -110,43 +111,10 @@ options (with default values):
 
 Quit from ssdb server.
 
-### client.unref()
-
-Equivalent to `client.conn.sock.unref()`, see http://nodejs.org/api/net.html#net_server_unref.
-
 ### command names
 
 ```js
-ssdb.commands   // js object keys
-```
-
-### Client events
-
-All client events: **"status_ok"**, **"status_not_found"**, **"status_fail"**, **"status_client_error"**, **"status_error"**
-
-Parameters: `command, error, data`.
-
-```js
-client.on('status_client_error', function(command, error, data) {
-  log.error('Error %s on command: %s', error, command);
-});
-```
-
-### Connection Events Handling
-
-All events (except `'data`) on nodejs's `net.event.connect` are avaliable (reference: http://nodejs.org/api/net.html)
-
-- event 'connect'
-- event 'end'
-- event 'timeout'
-- event 'drain'
-- event 'error'
-- event 'close'
-
-```js
-client.on('error', function(err){
-  log.error('ssdb connect error: %s', err);
-});
+ssdb.commands
 ```
 
 SSDB API Documentation
@@ -167,6 +135,10 @@ FAQ
 
    On a single client, the callbacks are run the same order as the commands are sent, TCP guarantees
    this: the stream will arrive in the same order as it was sent.
+
+3. Connection Pool?
+
+   Yes, node-ssdb always uses connection pool, default size is 1, but the pool is really simple.
 
 License
 -------
