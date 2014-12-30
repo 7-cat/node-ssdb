@@ -13,7 +13,9 @@
   "engines": {
     "node": ">=0.8"
   },
-  "dependencies": {},
+  "dependencies": {
+    "spp": "~0.0.3"
+  },
   "devDependencies": {
     "should": "4.0.4",
     "co-mocha": ">=1.0.4",
