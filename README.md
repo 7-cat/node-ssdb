@@ -13,6 +13,12 @@ Please dont send me emails for any questions about node-ssdb, open an issue on G
 
 Python port: https://github.com/hit9/ssdb.py
 
+Supported Engines
+-----------------
+
+- node.js >= v0.10.30
+- iojs >= 1.0.4
+
 Requirements
 -------------
 
