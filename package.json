@@ -15,7 +15,7 @@
     "node": ">= 0.10.30"
   },
   "dependencies": {
-    "spp": ">=0.0.5"
+    "spp": ">=0.0.8"
   },
   "devDependencies": {
     "should": "4.0.4",
