@@ -11,7 +11,11 @@ ssdb is a fast nosql database, an alternative to redis.
 
 Please dont send me emails for any questions about node-ssdb, open an issue on GitHub instead, thanks!
 
-Python port: https://github.com/hit9/ssdb.py
+Ports
+------
+
+- Python port: https://github.com/hit9/ssdb.py
+- Lua ngx client: https://github.com/eleme/lua-resty-ssdb
 
 Supported Engines
 -----------------
