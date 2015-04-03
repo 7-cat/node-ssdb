@@ -6,7 +6,7 @@
     "url": "git://github.com/eleme/node-ssdb.git"
   },
   "description": "ssdb nodejs client library, ssdb is a fast nosql database, an alternative to redis.",
-  "author": "hit9 <wangchao@ele.me>",
+  "author": "hit9 <hit9@ele.me>",
   "keywords": ["ssdb", "client"],
   "main": "./lib/ssdb",
   "license": "MIT",
