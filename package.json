@@ -14,7 +14,7 @@
     "iojs": ">= 1.0.4",
     "node": ">= 0.10.30"
   },
-  "dependencies": {
+  "optionalDependencies": {
     "spp": ">=0.0.9"
   },
   "devDependencies": {
