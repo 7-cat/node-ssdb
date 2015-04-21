@@ -3,7 +3,7 @@ node-ssdb
 
 ![](https://nodei.co/npm/ssdb.png)
 
-[ssdb](https://github.com/ideawu/ssdb) nodejs client library,
+[ssdb](https://github.com/ideawu/ssdb) nodejs/iojs client library,
 ssdb is a fast nosql database, an alternative to redis.
 
 **v0.3.0 is not backward-compactiable with old versions(0.2.x)**.
@@ -104,6 +104,12 @@ pool.acquire().set('key', 'val', function(err, data) {
     throw err;  // ssdb error
 });
 ```
+
+Protocol Parsers
+----------------
+
+Node-ssdb will try to find module [spp](https://github.com/hit9/spp_node), if found, use
+it, else use the nodejs version.
 
 API References
 --------------
