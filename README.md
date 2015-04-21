@@ -48,9 +48,10 @@ var pool = ssdb.createPool();
 var conn = pool.acquire();
 
 conn.set('key', 'val', function(err, data) {
-  if (!err) {
-    console.log(data);
-  } else throw err;
+  if (err) {
+    throw err;
+  }
+  // data => '1'
 });
 ```
 
