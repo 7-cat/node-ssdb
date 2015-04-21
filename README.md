@@ -154,7 +154,7 @@ FAQ
 
 2. Commands & Callbacks ordering ?
 
-   On a single client, the callbacks are run the same order as the commands are sent, TCP guarantees
+   On a single connection, the callbacks are run the same order as the commands are sent, TCP guarantees
    this: the stream will arrive in the same order as it was sent.
 
 3. Connection Pool?
@@ -169,8 +169,8 @@ FAQ
    yield conn.get('key');
    // async io and executed parallely on the remote end.
    yield [
-    pool.acquire().set('key1', 'val1');
-    pool.acquire().set('key2', 'val2');
+     pool.acquire().set('key1', 'val1');
+     pool.acquire().set('key2', 'val2');
    ];
    ```
 
