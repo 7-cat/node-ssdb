@@ -1,3 +1,8 @@
+0.3.0
+-----
+  * Create Pool as default behavor. (Non-backward-compactiable)
+  * Fix auth command callback
+
 0.2.0
 ------
 
