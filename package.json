@@ -14,6 +14,9 @@
     "iojs": ">= 1.0.4",
     "node": ">= 0.10.30"
   },
+  "dependencies": {
+    "promisify.js": "~0.0.1"
+  },
   "optionalDependencies": {
     "spp": ">=0.0.9"
   },
