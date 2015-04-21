@@ -3,9 +3,10 @@ node-ssdb
 
 ![](https://nodei.co/npm/ssdb.png)
 
-[ssdb](https://github.com/ideawu/ssdb) nodejs client library,
+[ssdb](https://github.com/ideawu/ssdb) nodejs/iojs client library,
 ssdb is a fast nosql database, an alternative to redis.
 
+**v0.3.0 is not backward-compactiable with old versions(0.2.x)**.
 
 ![](https://api.travis-ci.org/eleme/node-ssdb.svg)
 
@@ -16,6 +17,7 @@ Ports
 
 - Python port: https://github.com/hit9/ssdb.py
 - Lua ngx client: https://github.com/eleme/lua-resty-ssdb
+
 
 Supported Engines
 -----------------
@@ -42,12 +44,14 @@ The traditional Node.js way:
 
 ```js
 var ssdb = require('ssdb');
-var client = ssdb.createClient();
+var pool = ssdb.createPool();
+var conn = pool.acquire();
 
-client.set('key', 'val', function(err, data){
-  if (!err) {
-    console.log(data);
-  } else throw err;
+conn.set('key', 'val', function(err, data) {
+  if (err) {
+    throw err;
+  }
+  // data => '1'
 });
 ```
 
@@ -55,13 +59,14 @@ Work with [tj/co](https://github.com/tj/co), make it thunkify or promisify:
 
 ```js
 var co = require('co');
-client.thunkify();
-// or client.promisify();
+
+var pool = ssdb.createPool({promisify: true});
+var conn = pool.acquire();
 
 co(function *(){
   var key = 'key';
-  var a = yield client.set(key, 'val');
-  var b = yield client.get(key);
+  var a = yield conn.set(key, 'val');
+  var b = yield conn.get(key);
   console.log(a, b);  // 1 'val'
 }).catch(function(err) {
   console.error(err)
@@ -87,16 +92,35 @@ Callback functions have two parameters: `error, data`;
 - on `status_not_found`: `error` and `data` are both `undefined`
 - on `status_error`, `status_fail`, `status_client_error`: only `data` is `undefined`.
 
+Error Handling
+--------------
+
+```javascript
+var ssdb = require('ssdb');
+var pool = ssdb.createPool();
+
+pool.acquire().set('key', 'val', function(err, data) {
+  if (err && err instanceof ssdb.SSDBError)
+    throw err;  // ssdb error
+});
+```
+
+Protocol Parsers
+----------------
+
+Node-ssdb will try to find module [spp](https://github.com/hit9/spp_node), if found, use
+it, else use the nodejs version.
+
 API References
 --------------
 
-### createClient(options)
+### createPool(options)
 
 To make a ssdb client:
 
 ```js
 var ssdb = require('ssdb');
-var client = ssdb.createClient();
+var pool = ssdb.createPool();
 ```
 
 options (with default values):
@@ -106,16 +130,27 @@ options (with default values):
   host: '0.0.0.0',
   port: 8888,
   auth: undefined,  // ssdb server auth password
+  authCallback: function(err, data) {if (err) throw err;},  // callback function on auth
   size: 1,  // connection pool size
-  timeout: 0
+  timeout: 0,
+  promisify: false,  // make api methods promisify.
+  thunkify: false,  // make api methods thunkify.
 }
 ```
 
 *Note: `auth` requires ssdb v1.7.0.0+*
 
-### client.quit()
+### pool.acquire()
 
-Quit from ssdb server.
+Acquire a connection from pool.
+
+### pool.destroy()
+
+Close all connections in the pool.
+
+### pool.create(options)
+
+Create a new connection and add it to the pool.
 
 ### command names
 
@@ -139,12 +174,25 @@ FAQ
 
 2. Commands & Callbacks ordering ?
 
-   On a single client, the callbacks are run the same order as the commands are sent, TCP guarantees
+   On a single connection, the callbacks are run the same order as the commands are sent, TCP guarantees
    this: the stream will arrive in the same order as it was sent.
 
 3. Connection Pool?
 
-   Yes, node-ssdb always uses connection pool, default size is 1, but the pool is really simple.
+   ssdb is a multiple-threading server, so the connection pool is required. Here are some examples
+   to use the connection pool:
+
+   ```js
+   // sync io and executed in order on the remote end.
+   var conn = pool.acquire();
+   yield conn.set('key', 'val');
+   yield conn.get('key');
+   // async io and executed parallely on the remote end.
+   yield [
+     pool.acquire().set('key1', 'val1');
+     pool.acquire().set('key2', 'val2');
+   ];
+   ```
 
 License
 -------
