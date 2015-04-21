@@ -507,7 +507,6 @@ describe('ssdb', function(){
     for (var i = 0; i < size; i++)
       resps_.push(i);
 
-    console.log(yield reqs_);
     should(yield reqs_).eql(resps_);
   });
 });
