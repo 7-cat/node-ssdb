@@ -92,6 +92,19 @@ Callback functions have two parameters: `error, data`;
 - on `status_not_found`: `error` and `data` are both `undefined`
 - on `status_error`, `status_fail`, `status_client_error`: only `data` is `undefined`.
 
+Error Handling
+--------------
+
+```javascript
+var ssdb = require('ssdb');
+var pool = ssdb.createPool();
+
+pool.acquire().set('key', 'val', function(err, data) {
+  if (err && err instanceof ssdb.SSDBError)
+    throw err;  // ssdb error
+});
+```
+
 API References
 --------------
 
