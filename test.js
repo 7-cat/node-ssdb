@@ -483,7 +483,7 @@ describe('ssdb', function(){
 
   it('pool paral', function *(){
     var key = uk();
-    var size = 2;
+    var size = 15;
 
     var keys = [];
     for (var i = 0; i < size; i++)

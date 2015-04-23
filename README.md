@@ -6,7 +6,7 @@ node-ssdb
 [ssdb](https://github.com/ideawu/ssdb) nodejs/iojs client library,
 ssdb is a fast nosql database, an alternative to redis.
 
-**v0.3.0 is not backward-compactiable with old versions(0.2.x)**.
+**v0.3.0 (and higher versions) are not backward-compactiable with old versions(0.2.x)**.
 
 ![](https://api.travis-ci.org/eleme/node-ssdb.svg)
 
@@ -111,6 +111,15 @@ Protocol Parsers
 Node-ssdb will try to find module [spp](https://github.com/hit9/spp_node), if found, use
 it, else use the nodejs version.
 
+Poolling Policies
+-----------------
+
+There are 2 poolling policies avaliable: 'least_conn' and 'round_robin' (the default), e.g.
+
+```ssdb
+var pool = ssdb.createPool({policy: ssdb.Pool.policies.least_conn});
+```
+
 API References
 --------------
 
@@ -135,6 +144,7 @@ options (with default values):
   timeout: 0,
   promisify: false,  // make api methods promisify.
   thunkify: false,  // make api methods thunkify.
+  policy: Pool.policies.round_robin,
 }
 ```
 
