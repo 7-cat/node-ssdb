@@ -1,6 +1,6 @@
 {
   "name": "ssdb",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/eleme/node-ssdb.git"
@@ -19,7 +19,7 @@
     "promisify.js": "~0.0.1"
   },
   "optionalDependencies": {
-    "spp": ">=0.0.9"
+    "spp": ">=0.1.1"
   },
   "devDependencies": {
     "should": "4.0.4",
