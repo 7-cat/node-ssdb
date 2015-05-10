@@ -193,7 +193,7 @@ FAQ
    to use the connection pool:
 
    ```js
-   // sync io and executed in order on the remote end.
+   // async io and executed in order on the remote end.
    var conn = pool.acquire();
    yield conn.set('key', 'val');
    yield conn.get('key');
