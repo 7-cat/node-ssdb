@@ -12,7 +12,6 @@ node_js:
   - "iojs-v1.8.1"
   - "iojs-v2.0.0"
   - "iojs-v2.3.4"
-  - "iojs-v3.0.0-rc.3"
   - "iojs"
 
 before_install:
