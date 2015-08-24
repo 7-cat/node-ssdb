@@ -156,7 +156,8 @@ Acquire a connection from pool.
 
 ### pool.destroy()
 
-Close all connections in the pool.
+Close all connections in the pool. (*note that if a connection is closed, it will reconnect to ssdb
+server automatically if you reuse this conn to send commands, and the same with pool.*)
 
 ### pool.create(options)
 
