@@ -509,4 +509,19 @@ describe('ssdb', function(){
 
     should(yield reqs_).eql(resps_);
   });
+
+  it('conn close', function *() {
+    var key = uk();
+    var conn = pool.acquire();
+    yield conn.set(key, 'helloworld');
+    conn.close();
+    should(yield conn.get(key)).eql("helloworld");
+  });
+
+  it('pool destroy', function *() {
+    var key = uk();
+    yield pool.acquire().set(key, 'helloworld');
+    pool.destroy();
+    should(yield pool.acquire().get(key)).eql("helloworld");
+  });
 });
