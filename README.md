@@ -105,12 +105,6 @@ pool.acquire().set('key', 'val', function(err, data) {
 });
 ```
 
-Protocol Parsers
-----------------
-
-Node-ssdb will try to find module [spp](https://github.com/hit9/spp_node), if found, use
-it, else use the nodejs version.
-
 Poolling Policies
 -----------------
 

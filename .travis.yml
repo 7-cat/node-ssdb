@@ -3,16 +3,9 @@ language: node_js
 node_js:
   - "0.11"
   - "0.12"
-  - "iojs-v1.0.4"
-  - "iojs-v1.1.0"
-  - "iojs-v1.2.0"
-  - "iojs-v1.4.1"
-  - "iojs-v1.5.1"
-  - "iojs-v1.7.1"
-  - "iojs-v1.8.1"
   - "iojs-v2.0.0"
-  - "iojs-v2.3.4"
   - "iojs"
+  - "4.0.0"
 
 before_install:
   - sudo apt-get update -qq
