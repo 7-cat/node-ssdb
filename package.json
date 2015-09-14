@@ -18,9 +18,6 @@
     "create-error.js": "~0.0.3",
     "promisify.js": "~0.0.1"
   },
-  "optionalDependencies": {
-    "spp": ">=0.1.1"
-  },
   "devDependencies": {
     "should": "4.0.4",
     "co-mocha": ">=1.0.4",
