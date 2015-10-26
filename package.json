@@ -1,12 +1,12 @@
 {
   "name": "ssdb",
-  "version": "0.3.5",
+  "version": "0.3.7",
   "repository": {
     "type": "git",
     "url": "git://github.com/eleme/node-ssdb.git"
   },
   "description": "ssdb nodejs client library, ssdb is a fast nosql database, an alternative to redis.",
-  "author": "hit9 <hit9@ele.me>",
+  "author": "hit9 <hit9@icloud.com>",
   "keywords": ["ssdb", "client"],
   "main": "./lib/ssdb",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "node": ">= 0.10.30"
   },
   "dependencies": {
-    "create-error.js": "~0.0.3",
+    "create-error.js": "~0.0.5",
     "promisify.js": "~0.0.1"
   },
   "devDependencies": {
