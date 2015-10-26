@@ -15,7 +15,7 @@
     "node": ">= 0.10.30"
   },
   "dependencies": {
-    "create-error.js": "~0.0.3",
+    "create-error.js": "~0.0.5",
     "promisify.js": "~0.0.1"
   },
   "devDependencies": {
